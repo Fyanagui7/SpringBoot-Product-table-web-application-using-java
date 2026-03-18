@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Produtos</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Controle de Produtos</h1>
+
+    <!-- FORMULÁRIO -->
+    <form class="form-inline" action="/produto/salvar" method="post">
+        <input type="text" name="nome" placeholder="Nome" required>
+        <input type="text" name="desc" placeholder="Descrição" required>
+        <input type="text" name="qtd" placeholder="Qtd" required>
+        <input type="text" name="valor" placeholder="Valor" required>
+        <button type="submit" class="btn-add">Adicionar</button>
+    </form>
+
+    <!-- TABELA -->
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th>Qtd</th>
+                <th>Valor</th>
+                <th>Ação</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="p : ${produtos}">
+                <td th:text="${p.id}"></td>
+                <td th:text="${p.nome}"></td>
+                <td th:text="${p.desc}"></td>
+                <td th:text="${p.qtd}"></td>
+                <td th:text="${p.valor}"></td>
+                <td>
+                    <a th:href="@{/produto/deletar/{id}(id=${p.id})}" class="btn-delete">Excluir</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+
+</body>
+</html>
